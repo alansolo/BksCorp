@@ -4,17 +4,19 @@
 //PROCESO DE INSERCION DE DATOS
 ////////////////////////////////////////
 
-//echo '<script>console.log(' . json_encode(strtotime("now"), JSON_HEX_TAG) . ');</script>';  
-//if(isset($_POST['functionname']))
-//{
-
-//echo '<script>console.log(' . json_encode(strtotime("now"), JSON_HEX_TAG) . ')</script>'; 
-//echo '<script>console.log(' . date("Y-m-d H:i:s") . ')</script>'; 
+///////////////////////////////////
+///////////////////////////////////
+//VARIABLES GLOBALES
+///////////////////
+$tituloCorreoThird = "Agregar - Carga masiva - Organizaciones";
+$tituloCorreoContact = "Agregar - Carga masiva - Contactos";
+$tituloCorreoProduct = "Agregar - Carga masiva - Productos";
+$tituloCorreoProposal = "Agregar - Carga masiva - Propuestas";
+$paraCorreo = "gsalazarfg@gmail.com";
 
 date_default_timezone_set('America/Mexico_City');
-
-$dateSisIni = str_replace(' ', '%20', date("Y-m-d H", strtotime('-200 hours')));
-$dateSisFin = str_replace(' ', '%20', date("Y-m-d H"));
+//$dateSisIni = str_replace(' ', '%20', date("Y-m-d H", strtotime('-200 hours')));
+//$dateSisFin = str_replace(' ', '%20', date("Y-m-d H"));
 
 //$pruebaleft = str_pad("003", 7, "0", STR_PAD_LEFT);
 
@@ -31,7 +33,7 @@ $urlProductsPut = "https://www.bks.com.mx/bcorp/api/index.php/products/";
 $urlProductsPipe = "https://api.pipedrive.com/v1/products?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 $urlCategories = "https://www.bks.com.mx/bcorp/api/index.php/categories/";
 
-$urlProposals = "https://www.bks.com.mx/bcorp/api/index.php/proposals?limit=3000&sqlfilters=t.rowid%20%3D%20100"; //sqlfilters=te.acpd%3D0%20and%20t.fk_statut%3E0%20and%20t.entity%3D1"; //sqlfilters=t.rowid%20%3D%20100";
+$urlProposals = "https://www.bks.com.mx/bcorp/api/index.php/proposals?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.fk_statut%3E0%20and%20t.entity%3D1"; //sqlfilters=t.rowid%20%3D%20100";
 $urlProposalsPut = "https://www.bks.com.mx/bcorp/api/index.php/proposals/";
 $urlProposalsPipe = "https://api.pipedrive.com/v1/deals?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 $urlProposalsContact = "https://www.bks.com.mx/bcorp/api/index.php/contacts/";
@@ -47,13 +49,6 @@ $urlContactsThird = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties/";
 $urlThirdparties = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.status%3D1%20and%20t.entity%3D1%20and%20te.mgpd%3D1%20and%20(t.client%3D1%20or%20t.client%3D2%20or%20t.client%3D3)";
 $urlThirdpartiesPut = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties/";
 $urlThirdpartiesPipe = "https://api.pipedrive.com/v1/organizations?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
-
-$tituloCorreoThird = "Agregar - Carga masiva - Organizaciones";
-$tituloCorreoContact = "Agregar - Carga masiva - Contactos";
-$tituloCorreoProduct = "Agregar - Carga masiva - Productos";
-$tituloCorreoProposal = "Agregar - Carga masiva - Propuestas";
-$deCorreo = "alan.amst@gmail.com";
-$paraCorreo = "alan_solo@hotmail.com";
 
 $lengthCodeClient = 7;
 
@@ -148,14 +143,14 @@ function callAPIPipe($method, $url, $data = false)
 
 ///////////////////////////////////
 //ENVIAR CORREO
-function EnvioCorreo($de, $para, $titulo, $mensaje)
+function EnvioCorreo($para, $titulo, $mensaje)
 {
-    $to      = $de;
+    //$to      = $de;
     $subject = $titulo;
     //$message = 'Hola mundo';
     /*
-            $headers = 'From: alan_solo@hotmail.com' . "\r\n" .
-                'Reply-To: alan_solo@hotmail.com' . "\r\n" .
+            $headers = 'From: ' . "\r\n" .
+                'Reply-To: ' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
                 */
     $headers = "Content-Type: text/html; charset=UTF-8\r\n";
@@ -272,11 +267,9 @@ if (!isset($listThirds["error"]) && count($listThirds) > 0) {
                     "707a16c175da0aa667f7a90778937a5c25ec30d8" => $thirds["state"],
                 );
 
-                /*
+
                 $resThirdsPipe = CallAPIPipe("POST", $urlThirdpartiesPipe, $dataThirdsPipe);
                 $resThirdsPipe = json_decode($resThirdsPipe, true);
-
-
 
                 if (isset($resThirdsPipe["success"]) && $resThirdsPipe["success"]) {
 
@@ -309,7 +302,6 @@ if (!isset($listThirds["error"]) && count($listThirds) > 0) {
                 } else {
                     $mensajeErrorThird .= "<li>Id: " . $idThirds . ", Nombre: " . $thirds["name"] . ", Error: " . $resThirdsPipe["error"] . "</li>";
                 }
-                */
             }
         } catch (Exception $e) {
             $mensajeErrorThird .= "<li>Id: " . $idThirds . ", Nombre: " . $thirds["name"] . ", Error: " . $e->getMessage() . "</li>";
@@ -317,9 +309,9 @@ if (!isset($listThirds["error"]) && count($listThirds) > 0) {
     }
 
     ////////////////////////////
-    //ENVIO DE CORREO ORGANIZACION       
+    //ENVIO DE CORREO ORGANIZACION
     if (!empty($mensajeErrorThird)) {
-        EnvioCorreo($deCorreo, $paraCorreo, $tituloCorreoThird, $mensajeErrorThird);
+        EnvioCorreo($paraCorreo, $tituloCorreoThird, $mensajeErrorThird);
     }
 }
 
@@ -462,11 +454,9 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
                     "7a50b3f83c0fa869106ac8d09820b2389fe71cd3" => $contact["state"], //estado
                 );
 
-                /*
+
                 $resContactPipe = CallAPIPipe("POST", $urlContactsPipe, $dataContactPipe);
                 $resContactPipe = json_decode($resContactPipe, true);
-
-
 
                 if (isset($resContactPipe["success"]) && $resContactPipe["success"]) {
                     $arrayOptionsContact["array_options"]["options_acpd"] = "1";
@@ -494,7 +484,6 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
                 } else {
                     $mensajeErrorContact .= "<li>Id: " . $idContact . ", Nombre: " . $contact["firstname"] . " " . $contact["lastname"] . ", Error: " . $resContactPipe["error"] . "</li>";
                 }
-                */
             }
         } catch (Exception $e) {
             $mensajeErrorContact .= "<li>Id: " . $idContact . ", Nombre: " . $contact["firstname"] . " " . $contact["lastname"] . ", Error: " . $e->getMessage() . "</li>";
@@ -502,9 +491,9 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
     }
 
     ////////////////////////////
-    //ENVIO DE CORREO CONTACTO           
+    //ENVIO DE CORREO CONTACTO
     if (!empty($mensajeErrorContact)) {
-        EnvioCorreo($deCorreo, $paraCorreo, $tituloCorreoContact, $mensajeErrorContact);
+        EnvioCorreo($paraCorreo, $tituloCorreoContact, $mensajeErrorContact);
     }
 }
 
@@ -642,11 +631,9 @@ if (!isset($listProducts["error"]) && count($listProducts) > 0) {
                 "cc3001feeb6b06aadf3c7ab4c321b4621100bcf1" => $product["type"],
             );
 
-            /*
+
             $resProductPipe = CallAPIPipe("POST", $urlProductsPipe, $dataProductPipe);
             $resProductPipe = json_decode($resProductPipe, true);
-
-
 
             if (isset($resProductPipe["success"]) && $resProductPipe["success"]) {
                 $arrayOptionsProduct["array_options"]["options_acpd"] = "1";
@@ -734,16 +721,15 @@ if (!isset($listProducts["error"]) && count($listProducts) > 0) {
             } else {
                 $mensajeErrorProduct .= "<li>Id: " . $idProduct . ", Nombre: " . $labelName . ", Error: " . $resProductPipe["error"] . "</li>";
             }
-            */
         } catch (Exception $e) {
             $mensajeErrorProduct .= "<li>Id: " . $idProduct . ", Nombre: " . $labelName . ", Error: " . $e->getMessage() . "</li>";
         }
     }
 
     ////////////////////////////
-    //ENVIO DE CORREO PRODUCTO           
+    //ENVIO DE CORREO PRODUCTO
     if (!empty($mensajeErrorProduct)) {
-        EnvioCorreo($deCorreo, $paraCorreo, $tituloCorreoProduct, $mensajeErrorProduct);
+        EnvioCorreo($paraCorreo, $tituloCorreoProduct, $mensajeErrorProduct);
     }
 }
 
@@ -920,8 +906,6 @@ if (!isset($listProposals["error"]) && count($listProposals) > 0) {
             $resProposalPipe = CallAPIPipe("POST", $urlProposalsPipe, $dataProposalPipe);
             $resProposalPipe = json_decode($resProposalPipe, true);
 
-
-
             if (isset($resProposalPipe["success"]) && $resProposalPipe["success"]) {
                 $keyPipeDrive = "?" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 
@@ -990,9 +974,9 @@ if (!isset($listProposals["error"]) && count($listProposals) > 0) {
     ////////////////////////////
     //ENVIO DE CORREO PROPUESTA
     if (!empty($mensajeErrorProposal)) {
-        EnvioCorreo($deCorreo, $paraCorreo, $tituloCorreoProposal, $mensajeErrorProposal);
+        EnvioCorreo($paraCorreo, $tituloCorreoProposal, $mensajeErrorProposal);
     }
 }
 
 
-echo json_encode("OK");
+echo "Proceso Insertar Finalizado OK";
