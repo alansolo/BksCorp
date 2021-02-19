@@ -267,7 +267,7 @@ if (!isset($listThirds["error"]) && count($listThirds) > 0) {
                     "707a16c175da0aa667f7a90778937a5c25ec30d8" => $thirds["state"],
                 );
 
-
+                /*
                 $resThirdsPipe = CallAPIPipe("POST", $urlThirdpartiesPipe, $dataThirdsPipe);
                 $resThirdsPipe = json_decode($resThirdsPipe, true);
 
@@ -302,6 +302,7 @@ if (!isset($listThirds["error"]) && count($listThirds) > 0) {
                 } else {
                     $mensajeErrorThird .= "<li>Id: " . $idThirds . ", Nombre: " . $thirds["name"] . ", Error: " . $resThirdsPipe["error"] . "</li>";
                 }
+                */
             }
         } catch (Exception $e) {
             $mensajeErrorThird .= "<li>Id: " . $idThirds . ", Nombre: " . $thirds["name"] . ", Error: " . $e->getMessage() . "</li>";
@@ -454,7 +455,7 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
                     "7a50b3f83c0fa869106ac8d09820b2389fe71cd3" => $contact["state"], //estado
                 );
 
-
+                /*
                 $resContactPipe = CallAPIPipe("POST", $urlContactsPipe, $dataContactPipe);
                 $resContactPipe = json_decode($resContactPipe, true);
 
@@ -484,6 +485,7 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
                 } else {
                     $mensajeErrorContact .= "<li>Id: " . $idContact . ", Nombre: " . $contact["firstname"] . " " . $contact["lastname"] . ", Error: " . $resContactPipe["error"] . "</li>";
                 }
+                */
             }
         } catch (Exception $e) {
             $mensajeErrorContact .= "<li>Id: " . $idContact . ", Nombre: " . $contact["firstname"] . " " . $contact["lastname"] . ", Error: " . $e->getMessage() . "</li>";
