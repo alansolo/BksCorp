@@ -917,6 +917,7 @@ if (!isset($listProposals["error"]) && count($listProposals) > 0) {
             );
 
             //mensaje de prueba
+            //otra prueba
 
             $resProposalPipe = CallAPIPipe("POST", $urlProposalsPipe, $dataProposalPipe);
             $resProposalPipe = json_decode($resProposalPipe, true);
