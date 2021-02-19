@@ -916,6 +916,7 @@ if (!isset($listProposals["error"]) && count($listProposals) > 0) {
                 "0a21a3feaf958ebd02bcb697bacd8afabd2f89d4" => $whatsapp, //whatsapp
             );
 
+            //mensaje de prueba
 
             $resProposalPipe = CallAPIPipe("POST", $urlProposalsPipe, $dataProposalPipe);
             $resProposalPipe = json_decode($resProposalPipe, true);
