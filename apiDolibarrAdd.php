@@ -13,6 +13,7 @@ $tituloCorreoContact = "Agregar - Carga masiva - Contactos";
 $tituloCorreoProduct = "Agregar - Carga masiva - Productos";
 $tituloCorreoProposal = "Agregar - Carga masiva - Propuestas";
 $paraCorreo = "gsalazarfg@gmail.com";
+$limiteElementosApi = "300"; //Cantidad registros a insertar
 
 date_default_timezone_set('America/Mexico_City');
 //$dateSisIni = str_replace(' ', '%20', date("Y-m-d H", strtotime('-200 hours')));
@@ -28,12 +29,12 @@ $dolApiKey = "PDrive640440!";
 $dolNameKeyPipe = "api_token";
 $dolApiKeyPipe = "6beabb33d84b7f9faefc97973c50993846a258f6";
 
-$urlProducts = "https://www.bks.com.mx/bcorp/api/index.php/products?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.tosell%3D1%20and%20t.finished%3D1%20and%20t.fk_product_type%3D0%20and%20t.entity%3D1%20and%20te.mgpd%3D1"; //sqlfilters=t.fk_product_type%3D0%20and%20t.tosell%3D1%20and%20t.finished%20%3D%201%20and%20te.acpd%20%3D%200";//and%20t.datec%20%3E%3D%20'" . $dateSisIni . "'%20and%20t.datec%20%3C%3D%20'" . $dateSisFin . "'";
+$urlProducts = "https://www.bks.com.mx/bcorp/api/index.php/products?limit=" . $limiteElementosApi . "&sqlfilters=te.acpd%3D0%20and%20t.tosell%3D1%20and%20t.finished%3D1%20and%20t.fk_product_type%3D0%20and%20t.entity%3D1%20and%20te.mgpd%3D1"; //sqlfilters=t.fk_product_type%3D0%20and%20t.tosell%3D1%20and%20t.finished%20%3D%201%20and%20te.acpd%20%3D%200";//and%20t.datec%20%3E%3D%20'" . $dateSisIni . "'%20and%20t.datec%20%3C%3D%20'" . $dateSisFin . "'";
 $urlProductsPut = "https://www.bks.com.mx/bcorp/api/index.php/products/";
 $urlProductsPipe = "https://api.pipedrive.com/v1/products?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 $urlCategories = "https://www.bks.com.mx/bcorp/api/index.php/categories/";
 
-$urlProposals = "https://www.bks.com.mx/bcorp/api/index.php/proposals?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.fk_statut%3E0%20and%20t.entity%3D1"; //sqlfilters=t.rowid%20%3D%20100";
+$urlProposals = "https://www.bks.com.mx/bcorp/api/index.php/proposals?limit=" . $limiteElementosApi . "&sqlfilters=te.acpd%3D0%20and%20t.fk_statut%3E0%20and%20t.entity%3D1"; //sqlfilters=t.rowid%20%3D%20100";
 $urlProposalsPut = "https://www.bks.com.mx/bcorp/api/index.php/proposals/";
 $urlProposalsPipe = "https://api.pipedrive.com/v1/deals?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 $urlProposalsContact = "https://www.bks.com.mx/bcorp/api/index.php/contacts/";
@@ -41,12 +42,12 @@ $urlProposalsThird = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties/";
 $urlProposalsProductPipe = "https://api.pipedrive.com/v1/deals/";
 $urlProposalsProductDoli = "https://www.bks.com.mx/bcorp/api/index.php/products/";
 
-$urlContacts = "https://www.bks.com.mx/bcorp/api/index.php/contacts?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.statut%3D1%20and%20t.entity%3D1%20and%20te.mgpd%3D1";
+$urlContacts = "https://www.bks.com.mx/bcorp/api/index.php/contacts?limit=" . $limiteElementosApi . "&sqlfilters=te.acpd%3D0%20and%20t.statut%3D1%20and%20t.entity%3D1%20and%20te.mgpd%3D1";
 $urlContactsPut = "https://www.bks.com.mx/bcorp/api/index.php/contacts/";
 $urlContactsPipe = "https://api.pipedrive.com/v1/persons?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 $urlContactsThird = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties/";
 
-$urlThirdparties = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties?limit=3000&sqlfilters=te.acpd%3D0%20and%20t.status%3D1%20and%20t.entity%3D1%20and%20te.mgpd%3D1%20and%20(t.client%3D1%20or%20t.client%3D2%20or%20t.client%3D3)";
+$urlThirdparties = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties?limit=" . $limiteElementosApi . "&sqlfilters=te.acpd%3D0%20and%20t.status%3D1%20and%20t.entity%3D1%20and%20te.mgpd%3D1%20and%20(t.client%3D1%20or%20t.client%3D2%20or%20t.client%3D3)";
 $urlThirdpartiesPut = "https://www.bks.com.mx/bcorp/api/index.php/thirdparties/";
 $urlThirdpartiesPipe = "https://api.pipedrive.com/v1/organizations?start=0&" . $dolNameKeyPipe . "=" . $dolApiKeyPipe;
 
