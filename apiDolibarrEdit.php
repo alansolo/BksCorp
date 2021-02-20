@@ -424,7 +424,7 @@ if (!isset($listContacts["error"]) && count($listContacts) > 0) {
                     "aa2899a40b23b7edbfc64b42d3ad9d6cf9411775" => $contact["birthday"], //birthday
                     "b0396742da038967d4f2029c68ada251be25323f" => $contact["poste"], //poste
                     "phone" => $contact["phone_pro"], //phone
-                    "b64091221561eb8a9dda32704dd29dbfee795290" => "prueba", //$contact["phone_perso"], //phone_perso
+                    "b64091221561eb8a9dda32704dd29dbfee795290" => $contact["phone_perso"], //phone_perso
                     "b1708fa7673797cf973aae82c838d564fbe1a5df" => $contact["phone_mobile"], //phone_mobile
                     "email" => $contact["email"], //email
                     "1241f63687d014706519202472a700321cd39265" => $jabber, //socialnetworks
